@@ -8,6 +8,7 @@ class JsonSchema extends StatefulWidget {
   const JsonSchema({
     @required this.form,
     @required this.onChanged,
+    @required this.color,
     this.padding,
     this.formMap,
     this.errorMessages = const {},
@@ -17,6 +18,7 @@ class JsonSchema extends StatefulWidget {
     this.actionSave,
   });
 
+  final Color color;
   final Map errorMessages;
   final Map validations;
   final Map decorations;
@@ -120,6 +122,12 @@ class _CoreFormState extends State<JsonSchema> {
                 decoration: item['decoration'] ??
                     widget.decorations[item['key']] ??
                     new InputDecoration(
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: widget.color),
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: widget.color),
+                      ),
                       hintText: item['placeholder'] ?? "",
                       helperText: item['helpText'] ?? "",
                     ),
@@ -212,7 +220,7 @@ class _CoreFormState extends State<JsonSchema> {
             child: new Row(children: <Widget>[
               new Expanded(child: new Text(item['label'])),
               new Switch(
-                activeColor: Color.fromARGB(255, 190, 147, 90),
+                activeColor: widget.color,
                 value: item['value'] ?? false,
                 onChanged: (bool value) {
                   this.setState(() {
@@ -241,7 +249,7 @@ class _CoreFormState extends State<JsonSchema> {
                     child: new Text(
                         formGeneral['fields'][count]['items'][i]['label'])),
                 new Checkbox(
-                  activeColor: Color.fromARGB(255, 190, 147, 90),
+                  activeColor: widget.color,
                   value: formGeneral['fields'][count]['items'][i]['value'],
                   onChanged: (bool value) {
                     this.setState(
