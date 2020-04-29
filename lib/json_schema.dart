@@ -86,7 +86,7 @@ class _CoreFormState extends State<JsonSchema> {
     if (formGeneral['description'] != null) {
       listWidget.add(Text(
         formGeneral['description'],
-        style: new TextStyle(fontSize: 14.0,fontStyle: FontStyle.italic),
+        style: new TextStyle(fontSize: 14.0, fontStyle: FontStyle.italic),
       ));
     }
 
@@ -116,7 +116,7 @@ class _CoreFormState extends State<JsonSchema> {
               label,
               new TextFormField(
                 controller: null,
-                initialValue:  formGeneral['fields'][count]['value']??null,
+                initialValue: formGeneral['fields'][count]['value'] ?? null,
                 decoration: item['decoration'] ??
                     widget.decorations[item['key']] ??
                     new InputDecoration(
@@ -212,6 +212,7 @@ class _CoreFormState extends State<JsonSchema> {
             child: new Row(children: <Widget>[
               new Expanded(child: new Text(item['label'])),
               new Switch(
+                activeColor: Color.fromARGB(255, 190, 147, 90),
                 value: item['value'] ?? false,
                 onChanged: (bool value) {
                   this.setState(() {
@@ -240,6 +241,7 @@ class _CoreFormState extends State<JsonSchema> {
                     child: new Text(
                         formGeneral['fields'][count]['items'][i]['label'])),
                 new Checkbox(
+                  activeColor: Color.fromARGB(255, 190, 147, 90),
                   value: formGeneral['fields'][count]['items'][i]['value'],
                   onChanged: (bool value) {
                     this.setState(
